@@ -21,6 +21,9 @@ XSERVER ?= " \
 
 PREFERRED_PROVIDER_virtual/kernel ??= "linux-yocto"
 
+# Built-in GENI I2C needs QUP firmware before the real rootfs is mounted.
+PACKAGE_INSTALL:append:pn-${INITRAMFS_IMAGE} = " packagegroup-qcom-qup-firmware"
+
 VIRTUAL-RUNTIME_qcom-capsule-firmware ?= ""
 MACHINE_EXTRA_RRECOMMENDS += "${VIRTUAL-RUNTIME_qcom-capsule-firmware}"
 
